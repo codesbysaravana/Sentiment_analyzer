@@ -1,0 +1,14 @@
+# render.yaml
+services:
+  - type: web
+    name: sentiment-analyzer
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m uvicorn app:app --host 0.0.0.0 --port $PORT  
+    envVars:
+      - key: AWS_ACCESS_KEY_ID
+        sync: false # Set this in Render's dashboard for security
+      - key: AWS_SECRET_ACCESS_KEY
+        sync: false # Set this in Render's dashboard for security
+      - key: AWS_REGION
+        value: us-east-1 # Or your desired region
